@@ -1,4 +1,5 @@
 import axios from 'axios'
+import QueryString from 'qs'
 
 const http = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -16,12 +17,17 @@ http.interceptors.response.use(
   }
 )
 
-const getHouses = () => http.get('/houses')
+const getHousesBasic = (params) => http.get('/houses', {
+  params,
+  paramsSerializer: (params) => {
+    return QueryString.stringify(params, {arrayFormat: 'repeat'})
+  }
+})
 const getHouseDetail = (houseId) => http.get(`/houses/${houseId}`)
 const deleteHouse = (houseId) => http.delete(`/houses/${houseId}`)
 
 const TaskbleService = {
-  getHouses,
+  getHousesBasic,
   getHouseDetail,
   deleteHouse
 }

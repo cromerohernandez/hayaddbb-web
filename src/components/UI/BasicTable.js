@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 
+import SearchInput from './SearchInput'
 import BasicRow from './BasicRow'
 import ItemModal from './ItemModal'
 
 import { Table } from 'react-bootstrap'
 
-const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic }) => {
+const BasicTable = ({ itemType, basicFields, itemsBasic, filter, setFilter, setFirstIndex, getItemsBasic }) => {
   const [currentItemId, setCurrentItemId] = useState(null)
   const [modalType, setModalType] = useState(null)
   const [show, setShow] = useState(false)
@@ -30,7 +31,11 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic }) => {
               <th key={i}>{basicField.title}</th>
             ))}
           </tr>
-
+          <tr>
+            {basicFields.map((basicField, i) => (
+              <SearchInput setFirstIndex={setFirstIndex} criterion={basicField.field} searchCriteria={filter} setSearchCriteria={setFilter} key={i}/>
+            ))}
+          </tr>
         </thead>
 
         {itemsBasic && (

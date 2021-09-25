@@ -26,7 +26,7 @@ const ItemModal = ({ itemType, modalType, itemId, show, closeModal}) => {
           alert.launchErrorAlert(`ERROR: registro no encontrado`, error ? error : null)
         })
     }  
-  }, [modalState, itemId, alert])
+  }, [modalState, itemType, itemId, closeModal, alert])
 
   useEffect(() => {
     if (modalState !== 'create') {
