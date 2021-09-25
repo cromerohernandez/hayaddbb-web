@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ItemBasicRow = ({ basicFields, itemBasic, handleSelectItem }) => {
+const BasicRow = ({ basicFields, itemBasic, handleSelectItem }) => {
   const handleShowDetail = () => handleSelectItem(itemBasic.id)
 
   return (
@@ -8,7 +8,7 @@ const ItemBasicRow = ({ basicFields, itemBasic, handleSelectItem }) => {
       {itemBasic && (
         <tr onClick={handleShowDetail}>
           {basicFields.map((basicField, i) => (
-            <td key={i}>{itemBasic[basicField]}</td>
+            <td key={i}>{itemBasic[basicField.field]}</td>
           ))}
         </tr>
       )}
@@ -16,4 +16,4 @@ const ItemBasicRow = ({ basicFields, itemBasic, handleSelectItem }) => {
   )
 }
 
-export default ItemBasicRow
+export default BasicRow
