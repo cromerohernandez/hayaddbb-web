@@ -8,7 +8,7 @@ const ItemBasicRow = ({ basicFields, itemBasic, handleSelectItem }) => {
       {itemBasic && (
         <tr onClick={handleShowDetail}>
           {basicFields.map((basicField, i) => (
-            <td key={i}>{itemBasic[basicField]}</td>
+            <td key={i}>{itemBasic[basicField.field]}</td>
           ))}
         </tr>
       )}

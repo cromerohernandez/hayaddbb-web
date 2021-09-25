@@ -10,7 +10,7 @@ const BasicTable = ({ basicFields, itemsBasic }) => {
       <thead>
         <tr>
           {basicFields.map((basicField, i) => (
-            <th key={i}>{basicField}</th>
+            <th key={i}>{basicField.title}</th>
           ))}
         </tr>
 

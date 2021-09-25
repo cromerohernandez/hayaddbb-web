@@ -1,0 +1,17 @@
+@import '../colors.scss';
+
+.alertModal--success {
+  color: $color_success-text;
+  background-color: $color_success-bg;
+  border: 1px solid $color_success-border;
+  border-radius: 0.25rem;
+  text-align: center;
+}
+
+.alertModal--error {
+  color: $color_error-text;
+  background-color: $color_error-bg;
+  border: 1px solid $color_error-border;
+  border-radius: 0.25rem;
+  text-align: center;
+}
