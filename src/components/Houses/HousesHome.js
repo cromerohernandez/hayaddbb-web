@@ -6,39 +6,37 @@ import HayaDBService from '../../services/HayaDBService'
 import BasicTable from '../UI/BasicTable'
 import PaginationNav from '../UI/PaginationNav'
 
+import { basicHouseFields } from '../../const/housesConst'
+import { itemsPerPage } from '../../const/tableConst'
+
 const HousesHome = () => {
   const alert = useContext(AlertContext)
 
-  const [houses, setHouses] = useState(null)
-
-  const basicFields = [
-    { 
-      field: 'area',
-      title: 'Superficie'
-    },
-    { 
-      field: 'price',
-      title: 'Precio'
-    },
-    { 
-      field: 'description',
-      title: 'Descripción'
-    },
-    { 
-      field: 'address_city',
-      title: 'Ciudad'
-    }
-  ]
+  const [filter, setFilter] = useState({
+    sort: '_id',
+    sortDirection: 'asc',
+    address_city: '',
+    area: '',
+    description: '',
+    price: ''
+  })
+  const [housesBasic, setHousesBasic] = useState(null)
+  const [firstIndex, setFirstIndex] = useState(1)
+  const [housesNumber, setHousesNumber] = useState(0)
 
   const getHousesBasic = useCallback(() => {
-    HayaDBService.getHouses()
+    const params = {itemsPerPage: itemsPerPage, firstIndex: firstIndex, ...filter}
+
+    HayaDBService.getHousesBasic(params)
       .then(houses => {
-        setHouses(houses)
+        setHousesBasic(houses.housesBasic)
+        setFirstIndex(houses.firstIndex)
+        setHousesNumber(houses.totalNumber)
       })
       .catch(error => {
         alert.launchErrorAlert('ERROR: viviendas no encontradas', error ? error : null, true)
       })
-  }, [setHouses])
+  }, [firstIndex, filter, setHousesBasic, alert])
 
   useEffect(() => {
     getHousesBasic()
@@ -46,8 +44,8 @@ const HousesHome = () => {
 
   return(
     <div>
-      <BasicTable itemType='House' basicFields={basicFields} itemsBasic={houses} getItemsBasic={getHousesBasic} />
-      <PaginationNav />
+      <BasicTable itemType='House' basicFields={basicHouseFields} itemsBasic={housesBasic} filter={filter} setFilter={setFilter} setFirstIndex={setFirstIndex} getItemsBasic={getHousesBasic} />
+      <PaginationNav firstIndex={firstIndex} setFirstIndex={setFirstIndex} itemsNumber={housesNumber}/>
     </div>
   )
 }
