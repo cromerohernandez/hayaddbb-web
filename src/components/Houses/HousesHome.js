@@ -46,7 +46,7 @@ const HousesHome = () => {
 
   return(
     <div>
-      <BasicTable basicFields={basicFields} itemsBasic={houses} />
+      <BasicTable itemType='House' basicFields={basicFields} itemsBasic={houses} getItemsBasic={getHousesBasic} />
       <PaginationNav />
     </div>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ItemBasicRow = ({ basicFields, itemBasic, handleSelectItem }) => {
+const BasicRow = ({ basicFields, itemBasic, handleSelectItem }) => {
   const handleShowDetail = () => handleSelectItem(itemBasic.id)
 
   return (
@@ -16,4 +16,4 @@ const ItemBasicRow = ({ basicFields, itemBasic, handleSelectItem }) => {
   )
 }
 
-export default ItemBasicRow
+export default BasicRow

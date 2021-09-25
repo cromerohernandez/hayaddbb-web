@@ -18,10 +18,12 @@ http.interceptors.response.use(
 
 const getHouses = () => http.get('/houses')
 const getHouseDetail = (houseId) => http.get(`/houses/${houseId}`)
+const deleteHouse = (houseId) => http.delete(`/houses/${houseId}`)
 
 const TaskbleService = {
   getHouses,
-  getHouseDetail
+  getHouseDetail,
+  deleteHouse
 }
 
 export default TaskbleService
