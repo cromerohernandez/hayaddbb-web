@@ -16,10 +16,12 @@ http.interceptors.response.use(
   }
 )
 
-const houseDetail = (houseId) => http.get(`/houses/${houseId}`)
+const getHouses = () => http.get('/houses')
+const getHouseDetail = (houseId) => http.get(`/houses/${houseId}`)
 
 const TaskbleService = {
-  houseDetail
+  getHouses,
+  getHouseDetail
 }
 
 export default TaskbleService

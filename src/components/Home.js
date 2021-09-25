@@ -1,25 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 
 import HayaDBService from '../services/HayaDBService'
 
-const Home = () => {
-  const [house, setHouse] = useState(null)
+import BasicTable from './UI/BasicTable'
+import PaginationNav from './UI/PaginationNav'
 
-  useEffect(() => {
-    HayaDBService.houseDetail('614e08c4458384dc1716510e')
-      .then(house => {
-        setHouse(house)
+import logoHayaDDBB from '../assets/images/logoHayaDDBB.png'
+import '../stylesheets/Home.css'
+
+const Home = () => {
+  const [houses, setHouses] = useState(null)
+
+  const basicFields = [
+    'area',
+    'price',
+    'description',
+    'address_city'
+  ]
+
+  const getHousesBasic = useCallback(() => {
+    HayaDBService.getHouses()
+      .then(houses => {
+        setHouses(houses)
       })
       .catch(error => {
         console.log(error)
       })
-  })
+  }, [setHouses])
+
+  useEffect(() => {
+    getHousesBasic()
+  }, [getHousesBasic])
 
   return(
     <div>
-      {house && (
-        house.description
-      )}
+      <img src={logoHayaDDBB} alt='logoHayaDDBB' className='logo'/>
+      <BasicTable basicFields={basicFields} itemsBasic={houses} />
+      <PaginationNav />
     </div>
   )
 }
