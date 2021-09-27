@@ -1,0 +1,19 @@
+@import '../../colors.scss';
+
+.formTextArea {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  min-height: 4rem;
+  width: 100%;
+  border-width: 1px;
+  border-color: $color_main-40;
+  text-align: left;
+}
+
+.formTextArea::placeholder {
+  color:  $color_main-60;
+}
+
+.formTextArea:focus {
+  outline: none
+}

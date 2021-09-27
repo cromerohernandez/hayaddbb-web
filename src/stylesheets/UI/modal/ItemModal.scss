@@ -2,6 +2,12 @@
 
 /*CUSTOM REACT-BOOTSTRAP*/
 .modal-header {
+  height: 4.1rem;
   background-color: $color_main-100;
-  color:  $color_sec-100
+  color:  $color_sec-100;
+  vertical-align: center;
+}
+
+.modal .modal-body {
+  padding: 0.4rem 1rem;
 }

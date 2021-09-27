@@ -1,0 +1,33 @@
+@import './colors.scss';
+
+.itemDetailSection {
+  margin: 1rem 0;
+}
+
+.itemDetailSection__label {
+  color: $color_main-100;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.itemDetailSection__p {
+  margin: 0;
+  padding-left: 0.7rem;
+
+  &.icon {
+    margin: 0 0.5rem;
+    color: $color_main-100;
+    font-size: 1.5rem;
+  }
+
+  &.iconOff {
+    color: $color_main-30;
+  }
+}
+
+.itemDetailSection__rowSection {
+  padding-left: 1rem;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: space-between;
+}

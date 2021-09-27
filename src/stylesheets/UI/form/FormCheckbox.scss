@@ -1,0 +1,17 @@
+@import '../../colors.scss';
+
+.formCheckbox {
+  margin-right: 0.6rem;
+  border-width: 0 0 1px;
+  border-color: $color_main-40;
+  text-align: center;
+  cursor: pointer;
+}
+
+.formCheckbox::placeholder {
+  color:  $color_main-60;
+}
+
+.formCheckbox:focus {
+  outline: none
+}

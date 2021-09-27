@@ -51,9 +51,21 @@ const HousesHome = () => {
 
   return(
     <div className='home'>
+      <div className='home__filter'>
+        FILTROS
+      </div>
+
       <div className='home__table'>
         {housesBasic && (
-          <BasicTable itemType='House' basicFields={basicHouseFields} itemsBasic={housesBasic} filter={filter} setFilter={setFilter} setFirstIndex={setFirstIndex} getItemsBasic={getHousesBasic} />
+          <BasicTable
+            itemType='House'
+            basicFields={basicHouseFields}
+            itemsBasic={housesBasic}
+            getItemsBasic={getHousesBasic}
+            filter={filter}
+            setFilter={setFilter}
+            setFirstIndex={setFirstIndex}
+          />
         )}
       </div>
 

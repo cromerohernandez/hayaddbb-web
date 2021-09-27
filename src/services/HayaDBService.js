@@ -17,6 +17,7 @@ http.interceptors.response.use(
   }
 )
 
+const createHouse = (houseData) => http.post('/houses/new', houseData)
 const getHousesBasic = (params) => http.get('/houses', {
   params,
   paramsSerializer: (params) => {
@@ -24,11 +25,14 @@ const getHousesBasic = (params) => http.get('/houses', {
   }
 })
 const getHouseDetail = (houseId) => http.get(`/houses/${houseId}`)
+const updateHouse = (houseId, houseData) => http.patch(`/houses/${houseId}`, houseData)
 const deleteHouse = (houseId) => http.delete(`/houses/${houseId}`)
 
 const TaskbleService = {
+  createHouse,
   getHousesBasic,
   getHouseDetail,
+  updateHouse,
   deleteHouse
 }
 

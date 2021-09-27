@@ -1,8 +1,6 @@
 import { addressFields } from '../const/housesConst'
 
-export const setAddressString = (addressFieldsArray) => {
-  const { address_street_type, address_street_name, address_street_number, address_floor, address_door, address_rest } = addressFieldsArray
-
+export const setAddressString = (address_street_type, address_street_name, address_street_number, address_floor, address_door, address_rest) => {
   let addressString = `${address_street_type} ${address_street_name}, ${address_street_number}`
 
   if(address_floor && address_door) {
@@ -24,7 +22,7 @@ export const setAddressString = (addressFieldsArray) => {
 export const setAddress = (house) => {
   const { address_street_type, address_street_name, address_street_number, address_floor, address_door, address_rest } = house
 
-  const addressString = setAddressString({address_street_type, address_street_name, address_street_number, address_floor, address_door, address_rest})
+  const addressString = setAddressString(address_street_type, address_street_name, address_street_number, address_floor, address_door, address_rest)
 
   house = {...house, address: addressString}
 

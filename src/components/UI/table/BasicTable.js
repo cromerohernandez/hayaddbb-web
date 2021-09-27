@@ -6,16 +6,21 @@ import BasicRow from '../table/BasicRow'
 import ItemModal from '../modal/ItemModal'
 
 import { setSort } from '../../../helpers/tableHelper'
-import { Table } from 'react-bootstrap'
+import { Table, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 
 import '../../../stylesheets/UI/table/BasicTable.scss'
 
-const BasicTable = ({ itemType, basicFields, itemsBasic, filter, setFilter, setFirstIndex, getItemsBasic }) => {
+const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, setFilter, setFirstIndex }) => {
   const [currentItemId, setCurrentItemId] = useState(null)
   const [modalType, setModalType] = useState(null)
   const [show, setShow] = useState(false)
+
+  const handleCreate = () => {
+    setModalType('create')
+    setShow(true)
+  }
 
   const handleSetSortCriterion = (event) => {
     const { value } = event.target.attributes.value
@@ -41,8 +46,10 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, filter, setFilter, setF
 
   return (
     <div>
+      <Button variant='primary' onClick={handleCreate} className='table__addButton'><FontAwesomeIcon icon={faPlus}/></Button>
+
       <Table striped bordered hover>
-        <thead>
+        <thead className='table__head'>
           <tr>
             {basicFields.map((basicField, i) => (
               <th key={i} value={basicField.field} onClick={handleSetSortCriterion} className='table__header'>

@@ -90,7 +90,7 @@ const ItemModal = ({ itemType, modalType, itemId, show, closeModal}) => {
         <Modal show={show} onHide={handleClose}>
           <Modal.Header>
             <Modal.Title>
-              REF: {item.ref}
+              REF {item.ref}
             </Modal.Title>
           </Modal.Header>
 

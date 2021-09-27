@@ -1,0 +1,56 @@
+@import '../../colors.scss';
+
+.section {
+  margin: 0.85rem 0;
+}
+
+.section__label {
+  color: $color_main-100;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.section__subsection {
+  margin: 0.3rem 0;
+  padding-left: 1.2rem;
+}
+
+.section__subsection__error {
+  margin-left: 25%;
+  color: $color_danger;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.section__subsection__label {
+  width: 25%;
+  color:  $color_main-80;
+}
+
+.section__rowSubsection {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.section__rowSubsection__subsection {
+  margin: 0.3rem 0;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.section__rowSubsection__subsection .formInput {
+  width: 20%;
+}
+
+.section__rowSubsection__label {
+  color:  $color_main-80;
+}
+
+.section__asterisk {
+  margin: -0.5rem auto;
+  color:  $color_main-60;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,17 @@
+@import '../../colors.scss';
+
+.formInput {
+  margin-left: 0.5rem;
+  width: 70%;
+  border-width: 0 0 1px;
+  border-color: $color_main-40;
+  text-align: center;
+}
+
+.formInput::placeholder {
+  color: $color_main-60;
+}
+
+.formInput:focus {
+  outline: none
+}
