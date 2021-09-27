@@ -1,0 +1,25 @@
+@import '../colors.scss';
+
+.table__header {
+  --bs-table-bg: rgba(10,147,213,1);
+  color: $color_sec-100;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.table__header__arrow {
+  position: relative;
+  left: 0.5rem;
+
+  &.up {
+    vertical-align: -0.35rem;
+  }
+
+  &.down {
+    vertical-align: 0.05rem;
+  }
+}
+
+.table__body__td {
+  align-items: right;
+}

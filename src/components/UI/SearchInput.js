@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../../stylesheets/UI/SearchInput.scss'
+import '../../stylesheets/UI/SearchInputs.scss'
 
 const SearchInput = ({ setFirstIndex, criterion, searchCriteria, setSearchCriteria }) => {
   const handleChange = (event) => {
@@ -16,7 +16,14 @@ const SearchInput = ({ setFirstIndex, criterion, searchCriteria, setSearchCriter
 
   return (
     <td>
-      <input className='search-input' type='text' name={criterion} value={searchCriteria[criterion]} onChange={handleChange} autoComplete='off'></input>
+      <input
+        className='searchContainer__Input'
+        type='text' name={criterion}
+        value={searchCriteria[criterion]}
+        onChange={handleChange}
+        autoComplete='off'
+        placeholder='...'
+      />
     </td>
   )
 }

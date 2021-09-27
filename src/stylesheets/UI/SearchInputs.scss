@@ -1,0 +1,26 @@
+@import '../colors.scss';
+
+.searchContainer {
+  color: $color_main-80;
+}
+
+.searchContainer-range {
+  width: 50%
+}
+
+.searchContainer__Input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  text-align: center;
+  color: $color_main-80;
+  font-weight: bold;
+
+  &:focus {
+    outline: none
+  }
+
+  &::placeholder {
+    color: $color_main-30;
+  }
+}

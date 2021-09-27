@@ -1,15 +1,32 @@
 import React, { useState } from 'react'
 
 import SearchInput from './SearchInput'
+import SearchInputRange from './SearchInputRange'
 import BasicRow from './BasicRow'
 import ItemModal from './ItemModal'
 
+import { setSort } from '../../helpers/tableHelper'
 import { Table } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
+
+import '../../stylesheets/UI/BasicTable.scss'
 
 const BasicTable = ({ itemType, basicFields, itemsBasic, filter, setFilter, setFirstIndex, getItemsBasic }) => {
   const [currentItemId, setCurrentItemId] = useState(null)
   const [modalType, setModalType] = useState(null)
   const [show, setShow] = useState(false)
+
+  const handleSetSortCriterion = (event) => {
+    const { value } = event.target.attributes.value
+    const { newSort, newSortDirection } = setSort(filter.sort, filter.sortDirection, value)
+
+    setFilter({
+      ...filter,
+      sort: newSort,
+      sortDirection: newSortDirection
+    })
+  }
 
   const handleSelectItem = (itemId) => {
     setCurrentItemId(itemId)
@@ -28,20 +45,50 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, filter, setFilter, setF
         <thead>
           <tr>
             {basicFields.map((basicField, i) => (
-              <th key={i}>{basicField.title}</th>
+              <th key={i} value={basicField.field} onClick={handleSetSortCriterion} className='table__header'>
+                {basicField.title}
+                {filter.sort === basicField.field && filter.sortDirection === 'asc' && (
+                  <FontAwesomeIcon icon={faSortDown} className='table__header__arrow down'/>
+                )}
+                {filter.sort === basicField.field && filter.sortDirection === 'desc' && (
+                  <FontAwesomeIcon icon={faSortUp} className='table__header__arrow up'/>
+                )}
+              </th>
             ))}
           </tr>
           <tr>
-            {basicFields.map((basicField, i) => (
-              <SearchInput setFirstIndex={setFirstIndex} criterion={basicField.field} searchCriteria={filter} setSearchCriteria={setFilter} key={i}/>
-            ))}
+            {basicFields.map((basicField, i) => {
+              let searchItem = null
+              if(basicField.filterType === 'input') {
+                searchItem = (
+                  <SearchInput
+                    setFirstIndex={setFirstIndex}
+                    criterion={basicField.field}
+                    searchCriteria={filter}
+                    setSearchCriteria={setFilter}
+                    key={i}
+                  />
+                )
+              } else if(basicField.filterType === 'inputRange') {
+                searchItem = (
+                  <SearchInputRange
+                    setFirstIndex={setFirstIndex}
+                    criterion={basicField.field}
+                    searchCriteria={filter}
+                    setSearchCriteria={setFilter}
+                    key={i}
+                  />
+                )
+              }
+              return searchItem
+            })}
           </tr>
         </thead>
 
         {itemsBasic && (
           <tbody>
             {itemsBasic.map((itemBasic) => (
-              <BasicRow basicFields={basicFields} itemBasic={itemBasic} handleSelectItem={handleSelectItem} key={itemBasic.id} />
+              <BasicRow basicFields={basicFields} itemBasic={itemBasic} handleSelectItem={handleSelectItem} key={itemBasic.id}/>
             ))}
           </tbody>
         )}
@@ -55,18 +102,3 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, filter, setFilter, setF
 }
 
 export default BasicTable
-
-
-
-
-
-/*
-
-<tr>
-<SearchInput criterion={'nombre_contacto'} setFirstIndex={setFirstIndex} searchCriteria={searchCriteria} setSearchCriteria={setSearchCriteria} />
-<SearchInput criterion={'nombre_via'} setFirstIndex={setFirstIndex} searchCriteria={searchCriteria} setSearchCriteria={setSearchCriteria} />
-<SearchInput criterion={'numero_via'} setFirstIndex={setFirstIndex} searchCriteria={searchCriteria} setSearchCriteria={setSearchCriteria} />
-<SearchInput criterion={'localidad'} setFirstIndex={setFirstIndex} searchCriteria={searchCriteria} setSearchCriteria={setSearchCriteria} />
-</tr>
-
-*/
