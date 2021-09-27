@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 
-import AlertContext  from '../../contexts/AlertContext'
+import AlertContext  from '../../../contexts/AlertContext'
 
 import { Modal } from 'react-bootstrap'
 
-import '../../stylesheets/UI/AlertModal.scss'
+import '../../../stylesheets/UI/modal/AlertModal.scss'
 
 const AlertModal = () => {
   const alert = useContext(AlertContext)

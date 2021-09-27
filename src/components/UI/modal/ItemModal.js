@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useCallback, useState } from 'react'
 
-import AlertContext from '../../contexts/AlertContext'
-import HayaDBService from '../../services/HayaDBService'
+import AlertContext from '../../../contexts/AlertContext'
+import HayaDBService from '../../../services/HayaDBService'
 
-import HouseDetail from '../Houses/HouseDetail'
-import HouseForm from '../Houses/HouseForm'
+import HouseDetail from '../../Houses/HouseDetail'
+import HouseForm from '../../Houses/HouseForm'
 
 import { Button, Modal } from 'react-bootstrap'
+
+import '../../../stylesheets/UI/modal/ItemModal.scss'
 
 const ItemModal = ({ itemType, modalType, itemId, show, closeModal}) => {
   const alert = useContext(AlertContext)
@@ -88,7 +90,7 @@ const ItemModal = ({ itemType, modalType, itemId, show, closeModal}) => {
         <Modal show={show} onHide={handleClose}>
           <Modal.Header>
             <Modal.Title>
-              {item.id}
+              REF: {item.ref}
             </Modal.Title>
           </Modal.Header>
 
@@ -119,7 +121,7 @@ const ItemModal = ({ itemType, modalType, itemId, show, closeModal}) => {
               <Modal.Footer>
                 <p>¿Eliminar registro?</p>
                 <Button variant='danger' onClick={handleDelete}>Sí</Button>
-                <Button variant='success' onClick={handleAbortRequestDelete}>No</Button>
+                <Button variant='primary' onClick={handleAbortRequestDelete}>No</Button>
               </Modal.Footer>
             </>
           )}

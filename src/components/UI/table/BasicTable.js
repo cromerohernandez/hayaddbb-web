@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 
-import SearchInput from './SearchInput'
-import SearchInputRange from './SearchInputRange'
-import BasicRow from './BasicRow'
-import ItemModal from './ItemModal'
+import SearchInput from '../filter/SearchInput'
+import SearchInputRange from '../filter/SearchInputRange'
+import BasicRow from '../table/BasicRow'
+import ItemModal from '../modal/ItemModal'
 
-import { setSort } from '../../helpers/tableHelper'
+import { setSort } from '../../../helpers/tableHelper'
 import { Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 
-import '../../stylesheets/UI/BasicTable.scss'
+import '../../../stylesheets/UI/table/BasicTable.scss'
 
 const BasicTable = ({ itemType, basicFields, itemsBasic, filter, setFilter, setFirstIndex, getItemsBasic }) => {
   const [currentItemId, setCurrentItemId] = useState(null)

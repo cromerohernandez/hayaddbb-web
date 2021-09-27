@@ -1,10 +1,10 @@
-@import '../colors.scss';
+@import '../../colors.scss';
 
 .paginationNav {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  text-align: center
+  text-align: center;
 }
 
 .paginationNav__bt {
