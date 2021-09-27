@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 .App {
   text-align: center;
 }
@@ -6,4 +8,36 @@
   height: 5rem;
   width: 5rem;
   margin: 1rem;
+}
+
+/*CUSTOM REACT-BOOTSTRAP*/
+.btn:focus {
+  box-shadow: none;
+}
+
+.btn-primary {
+  background-color: rgba(10,147,213,1);
+  border: rgba(10,147,213,0.9);
+  outline-color: rgba(10,147,213,0.2);
+}
+
+.btn-primary:hover {
+  background-color: rgba(8,130,189,1);
+}
+
+.btn-primary:hover:focus {
+  background-color: rgba(8,130,189,1);
+}
+
+.btn-primary:focus {
+  background-color: rgba(10,147,213,1);
+}
+
+.btn-primary:active:focus {
+  background-color: rgba(8,130,189,1);
+  box-shadow: 0 0 0 0.3rem rgba(10,147,213,0.4)
+}
+
+.table {
+  --bs-table-hover-bg: rgba(10,147,213,0.15);
 }
