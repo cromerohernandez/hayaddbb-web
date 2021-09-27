@@ -1,0 +1,15 @@
+@import '../../colors.scss';
+
+.formSelect {
+  margin-left: 0.5rem;
+  width: 70%;
+  border-width: 0 0 1px;
+  border-color: $color_main-40;
+  text-align: center;
+  appearance: none;
+}
+
+.formSelect:focus {
+  outline: none;
+  color: $color_main-80;
+}

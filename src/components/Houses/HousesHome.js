@@ -3,12 +3,14 @@ import React, { useContext, useEffect, useCallback, useState } from 'react'
 import AlertContext from '../../contexts/AlertContext'
 import HayaDBService from '../../services/HayaDBService'
 
-import BasicTable from '../UI/BasicTable'
-import PaginationNav from '../UI/PaginationNav'
+import BasicTable from '../UI/table/BasicTable'
+import PaginationNav from '../UI/table/PaginationNav'
 
 import { setAddress } from '../../helpers/housesHelper'
 import { basicHouseFields } from '../../const/housesConst'
 import { itemsPerPage } from '../../const/tableConst'
+
+import '../../stylesheets/home.scss'
 
 const HousesHome = () => {
   const alert = useContext(AlertContext)
@@ -48,11 +50,28 @@ const HousesHome = () => {
   }, [getHousesBasic])
 
   return(
-    <div>
-      {housesBasic && (
-        <BasicTable itemType='House' basicFields={basicHouseFields} itemsBasic={housesBasic} filter={filter} setFilter={setFilter} setFirstIndex={setFirstIndex} getItemsBasic={getHousesBasic} />
-      )}
-      <PaginationNav firstIndex={firstIndex} setFirstIndex={setFirstIndex} itemsNumber={housesNumber}/>
+    <div className='home'>
+      <div className='home__filter'>
+        FILTROS
+      </div>
+
+      <div className='home__table'>
+        {housesBasic && (
+          <BasicTable
+            itemType='House'
+            basicFields={basicHouseFields}
+            itemsBasic={housesBasic}
+            getItemsBasic={getHousesBasic}
+            filter={filter}
+            setFilter={setFilter}
+            setFirstIndex={setFirstIndex}
+          />
+        )}
+      </div>
+
+      <div className='home__paginationNav'>
+        <PaginationNav firstIndex={firstIndex} setFirstIndex={setFirstIndex} itemsNumber={housesNumber}/>
+      </div>
     </div>
   )
 }

@@ -1,10 +1,10 @@
-@import '../colors.scss';
+@import '../../colors.scss';
 
 .paginationNav {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  text-align: center
+  text-align: center;
 }
 
 .paginationNav__bt {
@@ -13,8 +13,13 @@
   border-radius: 50%;
   border: 2px solid $color_main-100;
 
-  
+  &:hover {
+    background-color: $color_main-100;
+    color: $color_sec-100;
+  }
+
   &:disabled {
+    background-color: $color_sec-100;
     color: $color_main-20;
     border-color: $color_main-20;
   }

@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import AlertContext from '../contexts/AlertContext'
 
 import HousesHome from './Houses/HousesHome'
-import AlertModal from './UI/AlertModal'
+import AlertModal from './UI/modal/AlertModal'
 
 import logoHayaDDBB from '../assets/images/logoHayaDDBB.png'
 
@@ -19,7 +19,9 @@ function App() {
         <AlertModal/>
       )}
 
-      <img src={logoHayaDDBB} alt='logoHayaDDBB' className='logo'/>
+      <div className='appHeader'>
+        <img src={logoHayaDDBB} alt='logoHayaDDBB' className='appHeader__logo'/>
+      </div>
 
       <HousesHome />
     </div>

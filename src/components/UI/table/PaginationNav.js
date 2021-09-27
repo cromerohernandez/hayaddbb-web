@@ -2,9 +2,9 @@ import React from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { itemsPerPage } from '../../const/tableConst'
+import { itemsPerPage } from '../../../const/tableConst'
 
-import '../../stylesheets/UI/PaginationNav.scss'
+import '../../../stylesheets/UI/table/PaginationNav.scss'
 
 const PaginationNav = ({ firstIndex, setFirstIndex, itemsNumber }) => {
   const handlePrevPage = () => {
@@ -38,7 +38,7 @@ const PaginationNav = ({ firstIndex, setFirstIndex, itemsNumber }) => {
       <button onClick={handlePrevPage} disabled={disablePrevPage()} className='paginationNav__bt'><FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon></button>
       <p className='paginationNav__p'>{(itemsNumber ? firstIndex : 0) + ' - ' + (lastIndexToShow()) + ' de ' + itemsNumber}</p>
       <button onClick={handleNextPage} disabled={disableNextPage()} className='paginationNav__bt'><FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></button>
-  </div>
+    </div>
   )
 }
 

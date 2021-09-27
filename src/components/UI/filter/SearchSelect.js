@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../../stylesheets/UI/SearchInput.scss'
+import '../../../stylesheets/UI/filter/SearchInput.scss'
 
 const SearchSelect = ({ setFirstIndex, criterion, options, searchCriteria, setSearchCriteria }) => {
   const handleChange = (event) => {
