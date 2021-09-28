@@ -1,17 +1,23 @@
 @import './colors.scss';
 
 .App {
+  height: 100vh;
   text-align: center;
 }
 
-.appHeader {
-  height: 12vh;
-}
+.appLogo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15vh;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;}
 
-.appHeader__logo {
+.appLogo__logo {
   height: 5rem;
-  width: 5rem;
-  margin: 1rem;
+  width: 5rem;  
 }
 
 /*CUSTOM REACT-BOOTSTRAP*/

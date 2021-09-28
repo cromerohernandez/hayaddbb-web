@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 const AlertContext = React.createContext()
 
@@ -6,16 +6,16 @@ export const AlertContextProvider = (props) => {
   const [status, setStatus] = useState(null)
   const [text, setText] = useState(null)
 
-  const launchSuccessAlert = (text) => {
+  const launchSuccessAlert = useCallback((text) => {
     setStatus('success')
     setText(text)
     setTimeout(() => {
       setStatus(null)
       setText(null)
     }, 4000)
-  }
+  }, [])
 
-  const launchErrorAlert = (text, error, fixed) => {
+  const launchErrorAlert = useCallback((text, error, fixed) => {
     setStatus('error')
     setText(text + (error.response ? ` (${error.response.status} ${error.response.statusText})` : ' (conexión rechazada)'))
     if (!fixed) {
@@ -24,7 +24,7 @@ export const AlertContextProvider = (props) => {
         setText(null)
       }, 4000)
     }
-  }
+  }, [])
 
   const resetStatus = () => setStatus(null)
 

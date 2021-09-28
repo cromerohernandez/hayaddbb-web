@@ -11,7 +11,7 @@ import { Button, Modal } from 'react-bootstrap'
 import '../../../stylesheets/UI/modal/ItemModal.scss'
 
 const ItemModal = ({ itemType, modalType, itemId, show, closeModal}) => {
-  const alert = useContext(AlertContext)
+  const { launchErrorAlert, launchSuccessAlert } = useContext(AlertContext)
 
   const [item, setItem] = useState(null)
   const [modalState, setModalState] = useState(modalType)
@@ -25,16 +25,14 @@ const ItemModal = ({ itemType, modalType, itemId, show, closeModal}) => {
         })
         .catch(error => {
           closeModal()
-          alert.launchErrorAlert(`ERROR: registro no encontrado`, error ? error : null)
+          launchErrorAlert(`ERROR: registro no encontrado`, error ? error : null)
         })
     }  
-  }, [modalState, itemType, itemId, closeModal, alert])
+  }, [modalState, itemType, itemId, closeModal, launchErrorAlert])
 
   useEffect(() => {
-    if (modalState !== 'create') {
-      getItem()
-    }
-  }, [modalState, getItem])
+    getItem()
+  }, [getItem])
 
   const handleClose = () => {
     if (modalState === 'detail') {
@@ -52,7 +50,6 @@ const ItemModal = ({ itemType, modalType, itemId, show, closeModal}) => {
 
   const handleExitEdit = () => {
     setModalState('detail')
-    getItem()
   }
 
   const handleRequestDelete = () => {
@@ -67,10 +64,10 @@ const ItemModal = ({ itemType, modalType, itemId, show, closeModal}) => {
     HayaDBService[`delete${itemType}`](itemId)
       .then(() => {
         closeModal()
-        alert.launchSuccessAlert('Registro eliminado correctamente')
+        launchSuccessAlert('Registro eliminado correctamente')
       })
       .catch(error => {
-        alert.launchErrorAlert('ERROR: registro no eliminado', error ? error : null)
+        launchErrorAlert('ERROR: registro no eliminado', error ? error : null)
       })
   }
 

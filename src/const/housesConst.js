@@ -1,13 +1,3 @@
-//address fields except costpode and city
-export const addressFields = [
-  'address_street_type',
-  'address_street_name',
-  'address_street_number',
-  'address_floor',
-  'address_door',
-  'address_rest'
-]
-
 // table fields
 export const basicHouseFields = [
   { 
@@ -16,8 +6,28 @@ export const basicHouseFields = [
     filterType: 'input'
   },
   { 
-    field: 'address',
-    title: 'Dirección',
+    field: 'address_street_type',
+    title: 'Tipo Vía',
+    filterType: 'input'
+  },
+  { 
+    field: 'address_street_name',
+    title: 'Nombre Vía',
+    filterType: 'input'
+  },
+  { 
+    field: 'address_street_number',
+    title: 'Número Vía',
+    filterType: 'input'
+  },
+  { 
+    field: 'address_floor',
+    title: 'Planta',
+    filterType: 'input'
+  },
+  { 
+    field: 'address_door',
+    title: 'Puerta',
     filterType: 'input'
   },
   { 

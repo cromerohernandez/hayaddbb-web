@@ -10,7 +10,7 @@ const BasicRow = ({ basicFields, itemBasic, handleSelectItem }) => {
       {itemBasic && (
         <tr onClick={handleShowDetail} className='tableRow'>
           {basicFields.map((basicField, i) => (
-            <td key={i}>{itemBasic[basicField.field]}</td>
+            <td key={i}>{itemBasic[basicField.field] ? itemBasic[basicField.field] : '-'}</td>
           ))}
         </tr>
       )}

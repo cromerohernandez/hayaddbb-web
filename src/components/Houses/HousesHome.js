@@ -6,20 +6,23 @@ import HayaDBService from '../../services/HayaDBService'
 import BasicTable from '../UI/table/BasicTable'
 import PaginationNav from '../UI/table/PaginationNav'
 
-import { setAddress } from '../../helpers/housesHelper'
 import { basicHouseFields } from '../../const/housesConst'
 import { itemsPerPage } from '../../const/tableConst'
 
 import '../../stylesheets/home.scss'
 
 const HousesHome = () => {
-  const alert = useContext(AlertContext)
+  const { launchErrorAlert } = useContext(AlertContext)
 
   const [filter, setFilter] = useState({
     sort: '_id',
     sortDirection: 'asc',
     ref: '',
-    address: '',
+    address_street_type: '',
+    address_street_name: '',
+    address_street_number: '',
+    address_floor: '',
+    address_door: '',
     address_postcode: '',
     address_city: '',
     area_min: '',
@@ -36,14 +39,14 @@ const HousesHome = () => {
 
     HayaDBService.getHousesBasic(params)
       .then(res => {
-        setHousesBasic(res.housesBasic.map(houseBasic => setAddress(houseBasic)))
+        setHousesBasic(res.housesBasic)
         setFirstIndex(res.firstIndex)
         setHousesNumber(res.totalNumber)
       })
       .catch(error => {
-        alert.launchErrorAlert('ERROR: viviendas no encontradas', error ? error : null, true)
+        launchErrorAlert('ERROR: viviendas no encontradas', error ? error : null, true)
       })
-  }, [firstIndex, filter, setHousesBasic, alert])
+  }, [firstIndex, filter, setHousesBasic, launchErrorAlert])
 
   useEffect(() => {
     getHousesBasic()
@@ -51,10 +54,6 @@ const HousesHome = () => {
 
   return(
     <div className='home'>
-      <div className='home__filter'>
-        FILTROS
-      </div>
-
       <div className='home__table'>
         {housesBasic && (
           <BasicTable

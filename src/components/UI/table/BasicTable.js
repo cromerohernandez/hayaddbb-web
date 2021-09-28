@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
+import FiltersBar from './FiltersBar'
 import SearchInput from '../filter/SearchInput'
 import SearchInputRange from '../filter/SearchInputRange'
 import BasicRow from '../table/BasicRow'
@@ -8,7 +9,7 @@ import ItemModal from '../modal/ItemModal'
 import { setSort } from '../../../helpers/tableHelper'
 import { Table, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
+import { faFilter, faPlus, faHome, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 
 import '../../../stylesheets/UI/table/BasicTable.scss'
 
@@ -16,6 +17,11 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
   const [currentItemId, setCurrentItemId] = useState(null)
   const [modalType, setModalType] = useState(null)
   const [show, setShow] = useState(false)
+
+  const closeModal = useCallback(() => {
+    setShow(false)
+    getItemsBasic()
+  }, [getItemsBasic])
 
   const handleCreate = () => {
     setModalType('create')
@@ -39,14 +45,22 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
     setShow(true)
   }
 
-  const closeModal = () => {
-    setShow(false)
-    getItemsBasic()
-  }
-
   return (
-    <div>
-      <Button variant='primary' onClick={handleCreate} className='table__addButton'><FontAwesomeIcon icon={faPlus}/></Button>
+    <>
+      <div className='tableOverHead'>
+        <div className='tableOverHead__filters'>
+          <p className='tableOverHead__filters__filtersLogo'><FontAwesomeIcon icon={faFilter}/></p>
+          <FiltersBar 
+            setFirstIndex={setFirstIndex}
+            searchCriteria={filter}
+            setSearchCriteria={setFilter}
+          />
+        </div>
+
+        <Button variant='primary' onClick={handleCreate}>
+          <FontAwesomeIcon icon={faPlus}/> <FontAwesomeIcon icon={faHome}/>
+        </Button>
+      </div>
 
       <Table striped bordered hover>
         <thead className='table__head'>
@@ -66,7 +80,7 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
           <tr>
             {basicFields.map((basicField, i) => {
               let searchItem = null
-              if(basicField.filterType === 'input') {
+              if (basicField.filterType === 'input') {
                 searchItem = (
                   <SearchInput
                     setFirstIndex={setFirstIndex}
@@ -76,7 +90,7 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
                     key={i}
                   />
                 )
-              } else if(basicField.filterType === 'inputRange') {
+              } else if (basicField.filterType === 'inputRange') {
                 searchItem = (
                   <SearchInputRange
                     setFirstIndex={setFirstIndex}
@@ -95,7 +109,7 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
         {itemsBasic && (
           <tbody>
             {itemsBasic.map((itemBasic) => (
-              <BasicRow basicFields={basicFields} itemBasic={itemBasic} handleSelectItem={handleSelectItem} key={itemBasic.id}/>
+              <BasicRow basicFields={basicFields} itemBasic={itemBasic} handleSelectItem={handleSelectItem} key={itemBasic.id} className='tobody__tr'/>
             ))}
           </tbody>
         )}
@@ -104,7 +118,7 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
       {show && (
         <ItemModal itemType={itemType} modalType={modalType} itemId={currentItemId} show={show} closeModal={closeModal} />
       )}
-    </div>
+    </>
   )
 }
 
