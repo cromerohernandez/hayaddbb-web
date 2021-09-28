@@ -1,15 +1,42 @@
 @import '../../colors.scss';
 
-.table__addButton {
-  border-radius: 50%;
-  background-color: pink;
+.tableOverHead {
+  margin: 5vh 10%;
+  height: 5vh;
+  min-height: auto;
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tableOverHead__filters {
+  height: 100%;
+  width: 94%;
+  border: 2px solid $color_main-50;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tableOverHead__filters__filtersLogo {
+  height: 100%;
+  width: 5%;
+  background-color: $color_main-50;
+  color: $color_sec-100;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .table__head {
-  height: 9.2vh;
+  height: 9vh;
 }
 
 .table__header {
+  width: 10%;
+  min-width: 145px;
   --bs-table-bg: rgba(10,147,213,1);
   color: $color_sec-100;
   cursor: pointer;
@@ -38,6 +65,6 @@
   font-size: 4rem;
 }
 
-.table__body__td {
-  align-items: right;
+.table__body tr {
+  height: 4.9vh;
 }

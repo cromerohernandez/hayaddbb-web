@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import '../../../stylesheets/UI/filter/SearchInputs.scss'
 
 const SearchInputRange = ({ setFirstIndex, criterion, searchCriteria, setSearchCriteria }) => {
-  const handleChange = (event) => {
+  const [valMin, setValMin] = useState('')
+  const [valMax, setValMax] = useState('')
+  const [ onFocusMin, setOnFocusMin ] = useState(false)
+  const [ onFocusMax, setOnFocusMax ] = useState(false)
+
+
+  const handleFocusMin = () => {
+    setValMin('')
+    setOnFocusMin(true)
+  }
+  const handleFocusMax = () => {
+    setValMax('')
+    setOnFocusMax(true)
+  }
+
+  const handleChangeMin = (event) => setValMin(event.target.value)
+  const handleChangeMax = (event) => setValMax(event.target.value)
+
+  const handleBlur = (event) => {
     const { name, value } = event.target
 
     setFirstIndex(1)
@@ -12,6 +30,11 @@ const SearchInputRange = ({ setFirstIndex, criterion, searchCriteria, setSearchC
       ...searchCriteria,
       [name]: value
     })
+
+    setValMin('')
+    setValMax('')
+    setOnFocusMin(false)
+    setOnFocusMax(false)
   }
 
   return (
@@ -19,25 +42,29 @@ const SearchInputRange = ({ setFirstIndex, criterion, searchCriteria, setSearchC
       <table>
         <tbody>
           <tr className='searchContainer'>
-            <td className='searchContainer-range'>  
+            <td className='searchContainer--range'>  
               <input
                 className='searchContainer__Input'
                 type='text'
                 name={`${criterion}_min`}
-                value={searchCriteria[`${criterion}_min`]}
-                onChange={handleChange}
+                value={valMin || onFocusMin ? valMin : searchCriteria[`${criterion}_min`]}
+                onFocus={handleFocusMin}
+                onChange={handleChangeMin}
+                onBlur={handleBlur}
                 autoComplete='off'
                 placeholder='min'
               />
             </td>
             <td>-</td>
-            <td className='searchContainer-range'>
+            <td className='searchContainer--range'>
               <input
                 className='searchContainer__Input'
                 type='text'
                 name={`${criterion}_max`}
-                value={searchCriteria[`${criterion}_max`]}
-                onChange={handleChange}
+                value={valMax || onFocusMax ? valMax : searchCriteria[`${criterion}_max`]}
+                onFocus={handleFocusMax}
+                onChange={handleChangeMax}
+                onBlur={handleBlur}
                 autoComplete='off'
                 placeholder='max'
               />
@@ -49,4 +76,4 @@ const SearchInputRange = ({ setFirstIndex, criterion, searchCriteria, setSearchC
   )
 }
 
-export default SearchInputRange
+export default SearchInputRange 

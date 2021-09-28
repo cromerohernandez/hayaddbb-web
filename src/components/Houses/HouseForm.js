@@ -17,7 +17,7 @@ import { houseInitialErrorMessages, houseTypes, houseValidators, streetTypes } f
 import '../../stylesheets/UI/form/form.scss'
 
 const HouseForm = ({ house, formType, exit }) => {
-  const alert = useContext(AlertContext)
+  const { launchErrorAlert, launchSuccessAlert } = useContext(AlertContext)
 
   const [formErrors, setFormErrors] = useState(false)
   const [requestSubmit, setRequestSubmit] = useState(false)
@@ -189,19 +189,19 @@ const HouseForm = ({ house, formType, exit }) => {
       HayaDBService.createHouse(houseData)
         .then(res => {
           exit()
-          alert.launchSuccessAlert(`Registro creado correctamente`)
+          launchSuccessAlert(`Registro creado correctamente`)
         })
         .catch(error => {
-          alert.launchErrorAlert('ERROR: registro no creado', error ? error : null)
+          launchErrorAlert('ERROR: registro no creado', error ? error : null)
         })
     } else if (formType === 'edit') {
       HayaDBService.updateHouse(house.id, houseData)
         .then(res => {
           exit()
-          alert.launchSuccessAlert(`Registro modificado correctamente`)
+          launchSuccessAlert(`Registro modificado correctamente`)
         })
         .catch(error => {
-          alert.launchErrorAlert('ERROR: registro no modificado', error ? error : null)
+          launchErrorAlert('ERROR: registro no modificado', error ? error : null)
         })
     }
   }

@@ -19,10 +19,10 @@ function App() {
         <AlertModal/>
       )}
 
-      <div className='appHeader'>
-        <img src={logoHayaDDBB} alt='logoHayaDDBB' className='appHeader__logo'/>
+      <div className='appLogo'>
+        <img src={logoHayaDDBB} alt='logoHayaDDBB' className='appLogo__logo'/>
       </div>
-
+      
       <HousesHome />
     </div>
   );
