@@ -9,6 +9,7 @@ import ItemModal from '../modal/ItemModal'
 import PaginationNav from '../table/PaginationNav'
 
 import { setSort } from '../../../helpers/tableHelper'
+import { itemsPerPage } from '../../../const/tableConst'
 import { Table, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter, faPlus, faHome, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
@@ -114,8 +115,8 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
               <BasicRow basicFields={basicFields} itemBasic={itemBasic} handleSelectItem={handleSelectItem} key={itemBasic.id} className='tobody__tr'/>
             ))}
 
-            {itemsBasic.length < 15 && (
-              <EmptyRows number={15 - itemsBasic.length} />
+            {itemsBasic.length < itemsPerPage && (
+              <EmptyRows number={itemsPerPage - itemsBasic.length} />
             )}
           </tbody>
         )}
