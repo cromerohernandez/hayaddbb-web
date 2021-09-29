@@ -4,16 +4,19 @@ import FiltersBar from './FiltersBar'
 import SearchInput from '../filter/SearchInput'
 import SearchInputRange from '../filter/SearchInputRange'
 import BasicRow from '../table/BasicRow'
+import EmptyRows from '../table/EmptyRows'
 import ItemModal from '../modal/ItemModal'
+import PaginationNav from '../table/PaginationNav'
 
 import { setSort } from '../../../helpers/tableHelper'
+import { itemsPerPage } from '../../../const/tableConst'
 import { Table, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter, faPlus, faHome, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 
 import '../../../stylesheets/UI/table/BasicTable.scss'
 
-const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, setFilter, setFirstIndex }) => {
+const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, setFilter, firstIndex, setFirstIndex, itemsNumber }) => {
   const [currentItemId, setCurrentItemId] = useState(null)
   const [modalType, setModalType] = useState(null)
   const [show, setShow] = useState(false)
@@ -57,7 +60,7 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
           />
         </div>
 
-        <Button variant='primary' onClick={handleCreate}>
+        <Button variant='primary' onClick={handleCreate} className='tableOverHead__createButton'>
           <FontAwesomeIcon icon={faPlus}/> <FontAwesomeIcon icon={faHome}/>
         </Button>
       </div>
@@ -111,8 +114,20 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
             {itemsBasic.map((itemBasic) => (
               <BasicRow basicFields={basicFields} itemBasic={itemBasic} handleSelectItem={handleSelectItem} key={itemBasic.id} className='tobody__tr'/>
             ))}
+
+            {itemsBasic.length < itemsPerPage && (
+              <EmptyRows number={itemsPerPage - itemsBasic.length} />
+            )}
           </tbody>
         )}
+
+        <tfoot>
+          <tr className='table__paginationNav'>
+            <td colSpan='10'>
+              <PaginationNav firstIndex={firstIndex} setFirstIndex={setFirstIndex} itemsNumber={itemsNumber}/>
+            </td>
+          </tr>
+        </tfoot>
       </Table>
 
       {show && (

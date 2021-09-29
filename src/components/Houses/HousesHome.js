@@ -4,7 +4,6 @@ import AlertContext from '../../contexts/AlertContext'
 import HayaDBService from '../../services/HayaDBService'
 
 import BasicTable from '../UI/table/BasicTable'
-import PaginationNav from '../UI/table/PaginationNav'
 
 import { basicHouseFields } from '../../const/housesConst'
 import { itemsPerPage } from '../../const/tableConst'
@@ -63,13 +62,11 @@ const HousesHome = () => {
             getItemsBasic={getHousesBasic}
             filter={filter}
             setFilter={setFilter}
+            firstIndex={firstIndex}
             setFirstIndex={setFirstIndex}
+            itemsNumber={housesNumber}
           />
         )}
-      </div>
-
-      <div className='home__paginationNav'>
-        <PaginationNav firstIndex={firstIndex} setFirstIndex={setFirstIndex} itemsNumber={housesNumber}/>
       </div>
     </div>
   )

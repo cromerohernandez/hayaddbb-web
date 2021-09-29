@@ -14,7 +14,7 @@ function App() {
   const alert = useContext(AlertContext)
 
   return (
-    <div className="App">
+    <div className='App' id='app'>
       {alert.status && (
         <AlertModal/>
       )}
