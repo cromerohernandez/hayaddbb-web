@@ -1,0 +1,9 @@
+.tableEmptyRow {
+  height: 4.4vh;
+}
+
+.table .tableEmptyRow {
+  --bs-table-bg: white;
+  --bs-table-striped-bg: white;
+  --bs-table-hover-bg: white;
+}
