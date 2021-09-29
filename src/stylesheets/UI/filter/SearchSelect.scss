@@ -1,0 +1,15 @@
+@import '../../colors.scss';
+
+.searchSelect {
+  border-width: 0 0 1px;
+  border-color: $color_main-40;
+  text-align: center;
+  appearance: none;
+  color: $color_main-80;
+  font-weight: bold;
+}
+
+.searchSelect:focus {
+  outline: none;
+  color: $color_main-80;
+}

@@ -26,8 +26,14 @@ const HousesHome = () => {
     address_city: '',
     area_min: '',
     area_max: '',
+    bathrooms_min: '',
+    bathrooms_max: '',
+    garage: '',
+    garden: '',
     price_min: '',
-    price_max: ''
+    price_max: '',
+    terrace: '',
+    type: ''
   })
   const [housesBasic, setHousesBasic] = useState([])
   const [firstIndex, setFirstIndex] = useState(1)

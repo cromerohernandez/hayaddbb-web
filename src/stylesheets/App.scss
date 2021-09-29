@@ -13,11 +13,13 @@
   width: 10%;
   display: flex;
   justify-content: center;
-  align-items: center;}
+  align-items: center;
+}
 
 .appLogo__logo {
   height: 5rem;
-  width: 5rem;  
+  width: 5rem;
+  opacity: 50%;
 }
 
 /*CUSTOM REACT-BOOTSTRAP*/

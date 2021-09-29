@@ -22,8 +22,8 @@ const EmptyRows = ({ number }) => {
       {emptyRows && (
         <>
           {emptyRows.map((row, i) => (
-            <tr className='tableEmptyRow'>
-              <td colSpan={basicHouseFields.length} key={i}>{row}</td>
+            <tr key={i} className='tableEmptyRow'>
+              <td colSpan={basicHouseFields.length}>{row}</td>
             </tr>
           ))}
         </>
