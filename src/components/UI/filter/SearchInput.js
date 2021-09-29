@@ -15,16 +15,14 @@ const SearchInput = ({ setFirstIndex, criterion, searchCriteria, setSearchCriter
   }
 
   return (
-    <td>
-      <input
-        className='searchContainer__Input'
-        type='text' name={criterion}
-        value={searchCriteria[criterion]}
-        onChange={handleChange}
-        autoComplete='off'
-        placeholder='...'
-      />
-    </td>
+    <input
+      className='searchContainer__Input'
+      type='text' name={criterion}
+      value={searchCriteria[criterion]}
+      onChange={handleChange}
+      autoComplete='off'
+      placeholder='...'
+    />
   )
 }
 

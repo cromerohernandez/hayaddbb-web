@@ -2,7 +2,7 @@ import React from 'react'
 
 import '../../../stylesheets/UI/filter/SearchSelect.scss'
 
-const SearchSelect = ({ setFirstIndex, criterion, options, searchCriteria, setSearchCriteria }) => {
+const SearchSelectBoolean = ({ setFirstIndex, criterion, searchCriteria, setSearchCriteria }) => {
   const handleChange = (event) => {
     const { name, value } = event.target
 
@@ -16,12 +16,11 @@ const SearchSelect = ({ setFirstIndex, criterion, options, searchCriteria, setSe
 
   return (
     <select className='searchSelect' name={criterion} value={searchCriteria[criterion]} onChange={handleChange}>
-      <option value=''>Todos</option>
-      {options.map((option, i) => (
-        <option value={option} key={i}>{option}</option>
-      ))}
+      <option value=''>-</option>
+      <option value={true}>SI</option>
+      <option value={false}>NO</option>
     </select>
   )
 }
 
-export default SearchSelect
+export default SearchSelectBoolean

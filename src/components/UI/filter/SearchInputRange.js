@@ -38,41 +38,39 @@ const SearchInputRange = ({ setFirstIndex, criterion, searchCriteria, setSearchC
   }
 
   return (
-    <td>
-      <table>
-        <tbody>
-          <tr className='searchContainer'>
-            <td className='searchContainer--range'>  
-              <input
-                className='searchContainer__Input'
-                type='text'
-                name={`${criterion}_min`}
-                value={valMin || onFocusMin ? valMin : searchCriteria[`${criterion}_min`]}
-                onFocus={handleFocusMin}
-                onChange={handleChangeMin}
-                onBlur={handleBlur}
-                autoComplete='off'
-                placeholder='min'
-              />
-            </td>
-            <td>-</td>
-            <td className='searchContainer--range'>
-              <input
-                className='searchContainer__Input'
-                type='text'
-                name={`${criterion}_max`}
-                value={valMax || onFocusMax ? valMax : searchCriteria[`${criterion}_max`]}
-                onFocus={handleFocusMax}
-                onChange={handleChangeMax}
-                onBlur={handleBlur}
-                autoComplete='off'
-                placeholder='max'
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </td>
+    <table>
+      <tbody>
+        <tr className='searchContainer'>
+          <td className='searchContainer--range'>  
+            <input
+              className='searchContainer__Input'
+              type='text'
+              name={`${criterion}_min`}
+              value={valMin || onFocusMin ? valMin : searchCriteria[`${criterion}_min`]}
+              onFocus={handleFocusMin}
+              onChange={handleChangeMin}
+              onBlur={handleBlur}
+              autoComplete='off'
+              placeholder='min'
+            />
+          </td>
+          <td>-</td>
+          <td className='searchContainer--range'>
+            <input
+              className='searchContainer__Input'
+              type='text'
+              name={`${criterion}_max`}
+              value={valMax || onFocusMax ? valMax : searchCriteria[`${criterion}_max`]}
+              onFocus={handleFocusMax}
+              onChange={handleChangeMax}
+              onBlur={handleBlur}
+              autoComplete='off'
+              placeholder='max'
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
   )
 }
 

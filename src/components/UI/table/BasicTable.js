@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 
-import FiltersBar from './FiltersBar'
+import HouseFiltersBar from '../../Houses/HouseFiltersBar'
 import SearchInput from '../filter/SearchInput'
 import SearchInputRange from '../filter/SearchInputRange'
 import BasicRow from '../table/BasicRow'
@@ -53,10 +53,10 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
       <div className='tableOverHead'>
         <div className='tableOverHead__filters'>
           <p className='tableOverHead__filters__filtersLogo'><FontAwesomeIcon icon={faFilter}/></p>
-          <FiltersBar 
+          <HouseFiltersBar 
             setFirstIndex={setFirstIndex}
-            searchCriteria={filter}
-            setSearchCriteria={setFilter}
+            filter={filter}
+            setFilter={setFilter}
           />
         </div>
 
@@ -85,23 +85,25 @@ const BasicTable = ({ itemType, basicFields, itemsBasic, getItemsBasic, filter, 
               let searchItem = null
               if (basicField.filterType === 'input') {
                 searchItem = (
-                  <SearchInput
-                    setFirstIndex={setFirstIndex}
-                    criterion={basicField.field}
-                    searchCriteria={filter}
-                    setSearchCriteria={setFilter}
-                    key={i}
-                  />
+                  <td key={i}>
+                    <SearchInput
+                      setFirstIndex={setFirstIndex}
+                      criterion={basicField.field}
+                      searchCriteria={filter}
+                      setSearchCriteria={setFilter}
+                    />
+                  </td>
                 )
               } else if (basicField.filterType === 'inputRange') {
                 searchItem = (
-                  <SearchInputRange
-                    setFirstIndex={setFirstIndex}
-                    criterion={basicField.field}
-                    searchCriteria={filter}
-                    setSearchCriteria={setFilter}
-                    key={i}
-                  />
+                  <td key={i}>
+                    <SearchInputRange
+                      setFirstIndex={setFirstIndex}
+                      criterion={basicField.field}
+                      searchCriteria={filter}
+                      setSearchCriteria={setFilter}
+                    />
+                  </td>
                 )
               }
               return searchItem
